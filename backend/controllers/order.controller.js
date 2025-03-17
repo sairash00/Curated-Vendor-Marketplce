@@ -1,7 +1,6 @@
  import Cart from "../database/model/cart.model.js"
  import User from "../database/model/user.model.js"
  import Vendor from "../database/model/vendor.model.js"
-
  import Order from "../database/model/order.model.js"
 
 
@@ -29,15 +28,12 @@
         })
 
         // creating all the possibles order from the cart items
-        console.log(vendorCartMap)
         const createdOrders = [];
 
         for(const vendorId in vendorCartMap){
             const vendorItems = vendorCartMap[vendorId];
-            console.log("vendorItems : ", vendorItems)
             // mapping through each cart items for current specific vendor
             const orderItems = vendorItems.map((item) => {
-                console.log("orderItems :", item)
                 return {
                     product: item.product._id,
                     quantity: item.quantity,
@@ -133,7 +129,7 @@
             message: "User id is required"
         })
 
-        const user = await user.findById(userId)
+        const user = await User.findById(userId)
         .populate("orders", "vendor items status")
         .populate("orders.vendor", "businessName")
         .populate("orders.items.product", "name price category")
@@ -179,7 +175,7 @@
         return res.status(200).json({
             success: true,
             message: "Orders fetched successfully",
-            orders: user.orders
+            orders: vendor.orders
         })
 
     } catch (error) {
@@ -201,7 +197,7 @@ export const removeCancelledOrdersForVendors = async (req, res) => {
             message: "Order ID is required"
         })
 
-        const order = Order.findById(orderId).select("status user")
+        const order = await Order.findById(orderId).select("status user")
 
         if(!order) return res.status(404).json({
             success: false,
@@ -213,14 +209,20 @@ export const removeCancelledOrdersForVendors = async (req, res) => {
             message: "Order cannot be removed"
         })
 
-        const user = await User.findByIdAndUpdate(order.user, {
-            $pull: {orders : orderId}
-        })
+        const user = await Vendor.findById(vendorId).select("orders")
 
         if (!user) return res.status(500).json({
             success: false,
             message: "Couldn't remove order"
         })
+
+        if (!user.orders.includes(orderId)) return res.status(400).json({
+            success: false,
+            message: "Order not found in vendor's orders"
+        })
+
+        user.orders.pull(orderId)
+        await user.save()
 
         await Vendor.findByIdAndUpdate(vendorId, {
             $pull: {orders: orderId}
@@ -253,27 +255,37 @@ export const removeCancelledOrders = async (req, res) => {
             message: "Order ID is required"
         })
 
-        const order = Order.findById(orderId).select("status")
+        const order = await Order.findById(orderId)
 
         if(!order) return res.status(404).json({
             success: false,
             message: 'Order not found'
         })
-
+    
         if(order.status !== "cancelled") return res.status(400).json({
             success: false,
-            message: "Order cannot be removed"
+            message: "Order cannot be removed",
         })
 
-        const user = await User.findByIdAndUpdate(userId,{
-            $pull : {orders : orderId}
-        })
+        const user = await User.findById(userId).select("orders")
 
         if(!user) return res.status(404).json({
             success: false,
             message: "User not found"
         })
 
+        if(!user.orders.includes(orderId)) return res.status(400).json({
+            success: false,
+            message: "Order not found in user's orders"
+        })
+
+        user.orders.pull(orderId)
+        await user.save()
+
+        return res.status(200).json({
+            success: true,
+            message: "Order removed successfully"
+        })
         // the order is not deleted as the order detail will be required for the analytics pusposes
         // for the vendor even if it not required for that purpose it will be deleted when the vendor
         // removes the cancelled orders.
@@ -282,6 +294,47 @@ export const removeCancelledOrders = async (req, res) => {
         return res.status(500).json({
             success: false,
             error: error.message
+        })
+    }
+}
+
+export const updateOrderStatus = async(req, res) => {
+    try {
+        const {status, orderId} = req.body
+
+        if(!status || !orderId) return res.status(400).json({
+            success: false,
+            message: "Status and OrderId is required"
+        })
+
+        if(status !== "processing" && status !== "delivering" && status !== "delivered") return res.status(400).json({
+            success: false,
+            message: "Invalid status"
+        })
+
+        const order = await Order.findById(orderId).select("status");
+
+        if(!order) return res.status(404).json({
+            success: false,
+            message: "Order not found"
+        })
+
+        if( status === "processing") order.status = "processing";
+        if( status === "delivering") order.status = "delivering";
+        if( status === "delivered") order.status = "delivered";
+        
+        await order.save();
+
+        return res.status(200).json({
+            success: true,
+            message: "Order status updated successfully"
+        })
+
+
+    } catch (error) {
+        return res.status(500).json({
+            success: false,
+            message: error.message
         })
     }
 }

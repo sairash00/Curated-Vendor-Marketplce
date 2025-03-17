@@ -16,4 +16,4 @@ router.route("/getProductsByCategory/:category").get(authenticateVendor, getProd
 
 
 
-export default router
+export default router 

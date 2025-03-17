@@ -10,4 +10,4 @@ router.route("/remove/:id").post(authenticate, removeFromCart)
 router.route("/update").post(authenticate, updateCartItems)
 router.route("/get").get(authenticate, getCart)
 
-export default router
+export default router 

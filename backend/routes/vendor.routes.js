@@ -14,4 +14,4 @@ router.route("/update").post(authenticateVendor, updateProfile)
 
 
 
-export default router
+export default router 

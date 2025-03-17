@@ -12,4 +12,4 @@ router.route("/logout").post(authenticate, logout)
 router.route("/deleteUser").post(authenticate, deleteUserAccount)
 router.route("/updateUser").post(authenticate, updateUserProfile)
 
-export default router
+export default router 
