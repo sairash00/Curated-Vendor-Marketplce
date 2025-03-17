@@ -10,7 +10,7 @@ router.route("/login").post(loginVendor)
 router.route("/getDetails").get(authenticateVendor, getVendorInfo)
 router.route("/logout").post(authenticateVendor, logout)
 router.route("/delete").post(authenticateVendor, deleteAccount)
-router.route("/update").post(authenticateVendor, updateProfile)
+router.route("/update").post(authenticateVendor, updateProfile )
 
 
 
