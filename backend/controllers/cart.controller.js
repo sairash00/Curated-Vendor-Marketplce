@@ -108,7 +108,7 @@ export const removeFromCart = async (req, res) => {
     }
 };
 
-//update cart items 
+//Update cart items 
 export const updateCartItems  = async (req, res) => {
     try {
         const {quantity, id} = req.body
@@ -143,7 +143,7 @@ export const updateCartItems  = async (req, res) => {
     }
 }
 
-//get all cart items
+//Get all cart items
 export const getCart = async (req, res) => {
     try {
         const userId = req.user.id;
