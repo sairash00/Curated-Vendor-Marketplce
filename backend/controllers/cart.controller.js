@@ -2,7 +2,7 @@ import User from "../database/model/user.model.js";
 import Product from "../database/model/product.model.js";
 import Cart from "../database/model/cart.model.js";
 
-//add product to cart
+//Add product to cart
 export const addToCart = async (req,res) => {
     try {
         const {productId, quantity} = req.body;
@@ -67,7 +67,7 @@ export const addToCart = async (req,res) => {
     }
 }
 
-//remove product from cart
+//Remove product from cart
 export const removeFromCart = async (req, res) => {
     try {
         const cartItemId = req.params.id;
