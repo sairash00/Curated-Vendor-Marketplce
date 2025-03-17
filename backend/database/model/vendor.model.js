@@ -14,7 +14,7 @@ const vendorSchema = new mongoose.Schema({
         required: true
     },
     password: {
-        type: String,
+        type: String, 
         required: true
     },
     phone: {
@@ -34,10 +34,10 @@ const vendorSchema = new mongoose.Schema({
             type: String
         } 
     },
-    orders: {
+    orders: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Order'
-    },
+    }],
     products: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Product'

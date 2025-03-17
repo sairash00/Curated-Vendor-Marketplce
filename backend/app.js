@@ -7,6 +7,7 @@ import userRoute from './routes/user.routes.js'
 import vendorRoute from './routes/vendor.routes.js'
 import productRoute from './routes/product.routes.js'
 import cartRoute from './routes/cart.routes.js'
+import orderRoute from './routes/order.routes.js'
 
 const app = express()
 
@@ -28,6 +29,7 @@ app.use("/api/v1/user", userRoute)
 app.use("/api/v1/vendor", vendorRoute)
 app.use("/api/v1/product", productRoute)
 app.use("/api/v1/cart", cartRoute)
+app.use("/api/v1/order", orderRoute)
 
 // export the app file
 export default app

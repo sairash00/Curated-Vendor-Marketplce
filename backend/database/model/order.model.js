@@ -5,7 +5,7 @@ const orderSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
         required: true
-    },
+    }, 
     vendor: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'Vendor',
@@ -22,14 +22,11 @@ const orderSchema = new mongoose.Schema({
             required: true 
         }
     }],
-    totalPrice: {
-        type: Number,
-        required: true
-    },
+
     status: {
         type: String,
         required: true,
-        enum: ['pending', 'processing', 'delivering', 'delivered', 'cancelled']
+        enum: ['pending', "processing", 'delivering', 'delivered', 'cancelled']
     },
     paymentMethod: {
         type: String,
