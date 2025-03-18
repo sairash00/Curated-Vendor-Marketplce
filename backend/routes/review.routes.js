@@ -1,4 +1,4 @@
-import express from ' express';
+import express from 'express';
 import { addReview, deleteReview, getVendorReviews, updateReview } from '../controllers/review.controller.js';
 import { authenticate } from '../middlewares/authentication.middleware.js';
 

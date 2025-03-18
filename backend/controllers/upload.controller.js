@@ -1,6 +1,6 @@
 import User from "../database/model/user.model.js";
 import Vendor from "../database/model/vendor.model.js";
-import { uploadImage, deleteImage } from "../utils/imagekit";
+import { uploadImage, deleteImage } from "../utils/imagekit.js";
 
 
 // upload user profile Image
