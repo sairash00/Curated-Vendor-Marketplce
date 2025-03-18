@@ -30,7 +30,7 @@ const vendorSchema = new mongoose.Schema({
             type: String,
             
         },
-        url:{
+        url:{ 
             type: String
         } 
     },

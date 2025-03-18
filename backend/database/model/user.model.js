@@ -21,7 +21,7 @@ const userSchema = new mongoose.Schema({
         default: 'user'
     },
     profileImage: {
-        id: {
+        id: { 
             type: String,
             
         },
