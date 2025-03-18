@@ -155,6 +155,11 @@ export const getVendorReviews = async (req, res) => {
 
         const reviews = await Review.find({ vendor: vendorId }).populate("user", "name");
 
+        if(!reviews || reviews.length == 0) return res.status(404).json({
+            success: false,
+            message: "No reviews available"
+        })
+
         return res.status(200).json({
             success: true,
             reviews,
