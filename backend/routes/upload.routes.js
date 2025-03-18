@@ -1,6 +1,6 @@
 import express from 'express'
-import { authenticate, authenticateVendor } from '../middlewares/authentication.middleware'
-import { uploadUserProfile, uploadVendorProfile } from '../controllers/upload.controller'
+import { authenticate, authenticateVendor } from '../middlewares/authentication.middleware.js'
+import { uploadUserProfile, uploadVendorProfile } from '../controllers/upload.controller.js'
 
 const router = express.Router()
 
