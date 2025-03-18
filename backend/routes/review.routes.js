@@ -6,7 +6,7 @@ import { authenticate } from '../middlewares/authentication.middleware.js';
 const router = express.Router();
 
 router.route("/add").post(authenticate, addReview)
-router.route("/remove").post(authenticate, deleteReview)
+router.route("/remove/:reviewId").post(authenticate, deleteReview)
 router.route("/update").post(authenticate, updateReview)
 router.route("/getAllReviews/:vendorId").get(authenticate, getVendorReviews)
 
