@@ -80,7 +80,7 @@ export const removeFromCart = async (req, res) => {
 
         const cartItem = await Cart.findById(cartItemId);
         if (!cartItem) return res.status(404).json({
-            success: false,
+            success: false,  
             message: "Cart item not found"  
         });
 
