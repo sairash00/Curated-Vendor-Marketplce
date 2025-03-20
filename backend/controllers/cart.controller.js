@@ -77,7 +77,7 @@ export const removeFromCart = async (req, res) => {
             success: false,
             message: "Cart item ID is required" 
         });
-
+  
         const cartItem = await Cart.findById(cartItemId);
         if (!cartItem) return res.status(404).json({
             success: false,  
