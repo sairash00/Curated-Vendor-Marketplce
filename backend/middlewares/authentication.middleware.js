@@ -2,7 +2,7 @@ import User from '../database/model/user.model.js'
 import Vendor from '../database/model/vendor.model.js'
 import { decryptToken } from '../utils/jwt.js'
 
-// authenticate function for user authentication
+// Authenticate function for user authentication
 export const authenticate = async (req, res, next) => {
     try {
         const accessToken = req.cookies.accessToken
@@ -37,7 +37,7 @@ export const authenticate = async (req, res, next) => {
     }
 }
 
-// authenticate function for Vendor authentication
+// Authenticate function for Vendor authentication
 export const authenticateVendor = async (req, res, next) => {
     try {
         const accessToken = req.cookies.vendorAccessToken
