@@ -71,7 +71,7 @@ export const addToCart = async (req,res) => {
 export const removeFromCart = async (req, res) => {
     try {
         const cartItemId = req.params.id;
-        const userId = req.user.id;
+        const userId = req.user.id;               
 
         if (!cartItemId) return res.status(400).json({
             success: false,
