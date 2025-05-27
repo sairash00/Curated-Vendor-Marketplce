@@ -1,6 +1,9 @@
 @import "tailwindcss";
 
-  
+* {
+  font-family: "Ancizar Sans", sans-serif;
+  font-optical-sizing: auto;
+}
    
 ::-webkit-scrollbar{
     display: none;

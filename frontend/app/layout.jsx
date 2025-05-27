@@ -3,12 +3,14 @@ import {Toaster} from "react-hot-toast";
 
 export default function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-
-}>) {
+}) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin = "" />
+        <link href="https://fonts.googleapis.com/css2?family=Ancizar+Sans:ital,wght@0,100..1000;1,100..1000&display=swap" rel="stylesheet"/>
+      </head>
       <body
         className={`antialiased`}
       >
