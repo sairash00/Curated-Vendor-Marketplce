@@ -17,14 +17,14 @@ export default function RootLayout({
           position="top-right"
           toastOptions={{
             style: {
-              borderRadius: '8px',
+              borderRadius: '20px',
               background: '#6366F1', 
               color: '#F9FAFB',       
               fontWeight: '600',
             },
             success: {
               style: {
-                background: '#10B981', 
+                background: '#6366F1', 
                 color: '#F9FAFB',
               },
             },
