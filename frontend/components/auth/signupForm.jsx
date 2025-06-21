@@ -36,7 +36,7 @@ const SignupForm = () => {
     mutationFn: registerUser,
     onSuccess: (data) => {
       showToast("success", data.message);
-      router.push("/vendors")
+      router.push("/main/vendors")
     },
     onError: (error) => {
       console.log(error)

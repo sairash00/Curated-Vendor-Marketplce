@@ -1,10 +1,9 @@
 import React from 'react'
+import Login from "../../../components/auth/login.jsx"
 
 const page = () => {
   return (
-    <div>Vendors will be shown here
-        
-    </div>
+    <Login/>
   )
 }
 

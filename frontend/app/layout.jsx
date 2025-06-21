@@ -1,4 +1,4 @@
-import "./globals.css";
+import "../app/globals.css";
 import {Toaster} from "react-hot-toast";
 import ReactQueryProvider from "./providers/reactQueryProvider";
 
@@ -16,8 +16,8 @@ export default function RootLayout({
         className={`antialiased`}
       >
         <ReactQueryProvider>
-        {children}
-        <Toaster
+         {children}
+         <Toaster
           position="top-right"
           toastOptions={{
             style: {
